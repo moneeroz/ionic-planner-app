@@ -1,0 +1,7 @@
+{
+  "name": "ionic-planner-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
