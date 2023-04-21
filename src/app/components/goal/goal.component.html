@@ -1,3 +1,9 @@
-<p>
-  goal works!
-</p>
+<ion-checkbox labelPlacement="end">
+  <ion-item
+    ><ion-label>
+      <h2>{{ goal.name }}</h2>
+      <p>{{ goal.start_date | date }} - {{ goal.end_date | date }}</p>
+      <p>{{ goal.description }}</p>
+    </ion-label>
+  </ion-item>
+</ion-checkbox>

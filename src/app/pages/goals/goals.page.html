@@ -5,9 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">goals</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngFor="let goal of goals">
+    <app-goal [goal]="goal"></app-goal>
+  </ion-list>
 </ion-content>
