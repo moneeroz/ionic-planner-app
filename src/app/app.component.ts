@@ -18,9 +18,9 @@ export class AppComponent {
   ];
 
   public appAddPages = [
-    { title: 'Add Todo', url: '/add-todo', icon: 'document-text' },
-    { title: 'Add Goal', url: '/add-goal', icon: 'stats-chart' },
-    { title: 'Add Note', url: '/add-note', icon: 'journal' },
+    { title: 'Add Todo', url: '/add-todo', icon: 'add' },
+    { title: 'Add Goal', url: '/add-goal', icon: 'ribbon' },
+    { title: 'Add Note', url: '/add-note', icon: 'create' },
   ];
 
   constructor() {}
