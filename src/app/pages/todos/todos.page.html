@@ -5,9 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">todos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngFor="let todo of todos">
+    <app-todo [todo]="todo"></app-todo>
+  </ion-list>
 </ion-content>

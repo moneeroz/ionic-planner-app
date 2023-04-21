@@ -10,16 +10,16 @@ export class TodosService {
 
   constructor(private http: HttpClient) {}
 
-  getGoals() {
+  getTodos() {
     return this.http.get<Itodo[]>(this.apiUrl);
   }
 
-  getGoal(todo_id: string) {
+  getTodo(todo_id: string) {
     return this.http.get<Itodo>(this.apiUrl + '/' + todo_id);
   }
 
-  createGoal(goal_data: any) {
-    return this.http.post<Itodo>(this.apiUrl, goal_data);
+  createTodo(todo_data: any) {
+    return this.http.post<Itodo>(this.apiUrl, todo_data);
   }
 
   updateGoalStatus(todo_id: string, status: string) {

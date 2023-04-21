@@ -1,3 +1,9 @@
-<p>
-  todo works!
-</p>
+<ion-checkbox labelPlacement="end">
+  <ion-item
+    ><ion-label>
+      <h2>{{ todo.name }}</h2>
+      <p>{{ todo.start_date | date }} - {{ todo.end_date | date }}</p>
+      <p>{{ todo.description }}</p>
+    </ion-label>
+  </ion-item>
+</ion-checkbox>
