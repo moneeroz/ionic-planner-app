@@ -1,13 +1,84 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Add Todo</ion-title>
+    <ion-title>New Goal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-todo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="todoForm">
+    <ion-list>
+      <ion-item>
+        <ion-input
+          formControlName="name"
+          label="Title"
+          labelPlacement="floating"
+          placeholder="Enter title"
+          type="text"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea
+          formControlName="description"
+          label="Description"
+          labelPlacement="floating"
+          placeholder="Enter description"
+          type="text"
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetime"
+              formControlName="start_date"
+              hourCycle="h12"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item>
+        <ion-datetime-button datetime="datetimepicker"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetimepicker"
+              formControlName="end_date"
+              hourCycle="h12"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          aria-label="Status"
+          interface="popover"
+          placeholder="Select status"
+          formControlName="status"
+        >
+          <ion-select-option value="pending">Pending</ion-select-option>
+          <ion-select-option value="completed">Completed</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-button
+      (click)="onSubmit()"
+      id="submit-button"
+      color="dark"
+      expand="block"
+      fill="clear"
+      >Add Todo</ion-button
+    >
+
+    <ion-toast
+      trigger="submit-button"
+      message="Todo added succussfully!"
+      [duration]="2500"
+    ></ion-toast>
+  </form>
 </ion-content>
