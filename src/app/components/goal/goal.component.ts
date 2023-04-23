@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Igoal } from 'src/app/interfaces/igoal';
@@ -14,6 +14,10 @@ import { GoalsService } from 'src/app/services/goals.service';
 })
 export class GoalComponent implements OnInit {
   @Input() goal!: Igoal;
+
+  // custom event emitter
+  @Output() checkedEvent = new EventEmitter();
+
   constructor(private goalsService: GoalsService) {}
 
   onChecked(event: any) {
@@ -21,6 +25,9 @@ export class GoalComponent implements OnInit {
       this.goalsService
         .updateGoalStatus(this.goal.id)
         .subscribe((goal) => console.log(goal));
+
+      // Triggering our custom event
+      this.checkedEvent.emit(this.goal.id);
     }
   }
 

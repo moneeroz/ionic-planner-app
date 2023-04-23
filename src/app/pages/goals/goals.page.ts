@@ -22,5 +22,18 @@ export class GoalsPage implements OnInit {
     this.goalsService.getGoals().subscribe((goals) => (this.goals = goals));
   }
 
+  onChecked(goal_id: string) {
+    // remove goal from UI
+    const index = this.goals.findIndex((goal) => {
+      // Get goal index from the array
+      return goal.id === goal_id;
+    });
+
+    // Remove goal data from array
+    this.goals.splice(index, 1);
+
+    alert('goal completed successfully!');
+  }
+
   ngOnInit() {}
 }

@@ -31,7 +31,7 @@ export class TodosPage implements OnInit {
     // Remove todo data from array
     this.todos.splice(index, 1);
 
-    alert('todo deleted successfully!');
+    alert('todo completed successfully!');
   }
 
   ngOnInit() {}

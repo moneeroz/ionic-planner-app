@@ -6,6 +6,6 @@
 
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let goal of goals">
-    <app-goal [goal]="goal"></app-goal>
+    <app-goal [goal]="goal" (checkedEvent)="onChecked($event)"></app-goal>
   </ion-list>
 </ion-content>
