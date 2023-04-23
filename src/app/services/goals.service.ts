@@ -22,10 +22,9 @@ export class GoalsService {
     return this.http.post<Igoal>(this.apiUrl, goal_data);
   }
 
-  updateGoalStatus(goal_id: string, status: string) {
-    return this.http.patch<Igoal>(
-      this.apiUrl + '/update-status/' + goal_id,
-      status,
-    );
+  updateGoalStatus(goal_id: string) {
+    return this.http.patch<Igoal>(this.apiUrl + '/update-status/' + goal_id, {
+      status: 'completed',
+    });
   }
 }

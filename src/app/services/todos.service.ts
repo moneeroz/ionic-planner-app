@@ -22,10 +22,9 @@ export class TodosService {
     return this.http.post<Itodo>(this.apiUrl, todo_data);
   }
 
-  updateGoalStatus(todo_id: string, status: string) {
-    return this.http.patch<Itodo>(
-      this.apiUrl + '/update-status/' + todo_id,
-      status,
-    );
+  updateTodoStatus(todo_id: string) {
+    return this.http.patch<Itodo>(this.apiUrl + '/update-status/' + todo_id, {
+      status: 'completed',
+    });
   }
 }

@@ -1,4 +1,4 @@
-<ion-checkbox labelPlacement="end">
+<ion-checkbox labelPlacement="end" (ionChange)="onChecked($event)">
   <ion-item
     ><ion-label>
       <h2>{{ todo.name }}</h2>

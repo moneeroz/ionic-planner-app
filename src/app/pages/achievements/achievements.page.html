@@ -12,8 +12,8 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item>
-          <ion-label *ngFor="let todo of achievedTodos">
+        <ion-item *ngFor="let todo of achievedTodos">
+          <ion-label>
             <h2>{{ todo.name }}</h2>
             <p>{{ todo.start_date | date }} - {{ todo.end_date | date }}</p>
             <p>{{ todo.description }}</p>
@@ -30,8 +30,8 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item>
-          <ion-label *ngFor="let goal of achievedGoals">
+        <ion-item *ngFor="let goal of achievedGoals">
+          <ion-label>
             <h2>{{ goal.name }}</h2>
             <p>{{ goal.start_date | date }} - {{ goal.end_date | date }}</p>
             <p>{{ goal.description }}</p>

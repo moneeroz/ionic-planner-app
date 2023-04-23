@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Itodo } from 'src/app/interfaces/itodo';
+import { TodosService } from 'src/app/services/todos.service';
 
 @Component({
   selector: 'app-todo',
@@ -13,7 +14,15 @@ import { Itodo } from 'src/app/interfaces/itodo';
 })
 export class TodoComponent implements OnInit {
   @Input() todo!: Itodo;
-  constructor() {}
+  constructor(private todosService: TodosService) {}
+
+  onChecked(event: any) {
+    if (event.detail.checked) {
+      this.todosService
+        .updateTodoStatus(this.todo.id)
+        .subscribe((todo) => console.log(todo));
+    }
+  }
 
   ngOnInit() {}
 }
