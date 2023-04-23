@@ -21,5 +21,18 @@ export class TodosPage implements OnInit {
     this.todosService.getTodos().subscribe((todos) => (this.todos = todos));
   }
 
+  onChecked(todo_id: string) {
+    // remove todo from UI
+    const index = this.todos.findIndex((todo) => {
+      // Get todo index from the array
+      return todo.id === todo_id;
+    });
+
+    // Remove todo data from array
+    this.todos.splice(index, 1);
+
+    alert('todo deleted successfully!');
+  }
+
   ngOnInit() {}
 }

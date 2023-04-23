@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Itodo } from 'src/app/interfaces/itodo';
@@ -14,6 +14,10 @@ import { TodosService } from 'src/app/services/todos.service';
 })
 export class TodoComponent implements OnInit {
   @Input() todo!: Itodo;
+
+  // custom event emitter
+  @Output() checkedEvent = new EventEmitter();
+
   constructor(private todosService: TodosService) {}
 
   onChecked(event: any) {
@@ -21,6 +25,9 @@ export class TodoComponent implements OnInit {
       this.todosService
         .updateTodoStatus(this.todo.id)
         .subscribe((todo) => console.log(todo));
+
+      // Triggering our custom event
+      this.checkedEvent.emit(this.todo.id);
     }
   }
 
