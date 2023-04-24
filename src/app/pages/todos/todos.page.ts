@@ -5,13 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { Itodo } from 'src/app/interfaces/itodo';
 import { TodosService } from 'src/app/services/todos.service';
 import { TodoComponent } from 'src/app/components/todo/todo.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.page.html',
   styleUrls: ['./todos.page.scss'],
   standalone: true,
-  imports: [IonicModule, TodoComponent, NgFor],
+  imports: [IonicModule, TodoComponent, NgFor, RouterModule],
 })
 export class TodosPage implements OnInit {
   todos: Itodo[] = [];

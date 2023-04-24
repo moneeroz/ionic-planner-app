@@ -5,13 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { GoalComponent } from 'src/app/components/goal/goal.component';
 import { Igoal } from 'src/app/interfaces/igoal';
 import { GoalsService } from 'src/app/services/goals.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.page.html',
   styleUrls: ['./goals.page.scss'],
   standalone: true,
-  imports: [IonicModule, GoalComponent, NgFor],
+  imports: [IonicModule, GoalComponent, NgFor, RouterModule],
 })
 export class GoalsPage implements OnInit {
   goals: Igoal[] = [];

@@ -16,7 +16,7 @@
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import '@ionic/angular/css/display.css';
+@import "@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
@@ -24,3 +24,20 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+/* Ion fab button style */
+ion-fab-button::part(native) {
+  background-color: var(--ion-color-tertiary-tint);
+
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  color: var(--ion-color-tertiary-contrast);
+}
+
+ion-fab-button::part(native):hover::after {
+  background-color: var(--ion-color-tertiary);
+}
+
+ion-fab-button::part(native):active::after {
+  background-color: var(--ion-color-tertiary-shade);
+}

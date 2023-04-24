@@ -8,4 +8,10 @@
   <ion-list *ngFor="let todo of todos">
     <app-todo [todo]="todo" (checkedEvent)="onChecked($event)"></app-todo>
   </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerDirection="forward" [routerLink]="['/add-todo']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

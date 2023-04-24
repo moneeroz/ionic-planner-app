@@ -8,4 +8,10 @@
   <ion-list *ngFor="let goal of goals">
     <app-goal [goal]="goal" (checkedEvent)="onChecked($event)"></app-goal>
   </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerDirection="forward" [routerLink]="['/add-goal']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
