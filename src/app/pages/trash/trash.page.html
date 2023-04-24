@@ -4,4 +4,82 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"></ion-content>
+<ion-content [fullscreen]="true">
+  <!-- Deleted Todos -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Deleted Todos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let todo of deletedTodos">
+          <ion-label class="ion-text-wrap">{{ todo.name }}</ion-label>
+          <ion-button
+            fill="clear"
+            color="tertiary"
+            (click)="onTodoRecover(todo.id)"
+            ><ion-icon name="arrow-undo-outline"></ion-icon
+          ></ion-button>
+          <ion-button
+            fill="clear"
+            color="tertiary"
+            (click)="onTodoDelete(todo.id)"
+            ><ion-icon name="trash-outline"></ion-icon
+          ></ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Deleted Goals -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Deleted Goals</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let goal of deletedGoals">
+          <ion-label class="ion-text-wrap">{{ goal.name }}</ion-label>
+          <ion-button
+            fill="clear"
+            color="tertiary"
+            (click)="onGoalRecover(goal.id)"
+            ><ion-icon name="arrow-undo-outline"></ion-icon
+          ></ion-button>
+          <ion-button
+            fill="clear"
+            color="tertiary"
+            (click)="onGoalDelete(goal.id)"
+            ><ion-icon name="trash-outline"></ion-icon
+          ></ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Deleted Notes -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Deleted Notes</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let note of deletedNotes">
+          <ion-label class="ion-text-wrap">{{ note.name }}</ion-label>
+          <ion-button
+            fill="clear"
+            color="tertiary"
+            (click)="onNoteRecover(note.id)"
+            ><ion-icon name="arrow-undo-outline"></ion-icon
+          ></ion-button>
+          <ion-button
+            fill="clear"
+            color="tertiary"
+            (click)="onNoteDelete(note.id)"
+            ><ion-icon name="trash-outline"></ion-icon
+          ></ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -21,8 +21,4 @@ export class NotesService {
   createNote(note_data: any) {
     return this.http.post<Inote>(this.apiUrl, note_data);
   }
-
-  deleteNote(note_id: string) {
-    return this.http.delete<Inote>(this.apiUrl + '/' + note_id);
-  }
 }
