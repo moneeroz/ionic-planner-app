@@ -21,4 +21,11 @@ export class NotesService {
   createNote(note_data: any) {
     return this.http.post<Inote>(this.apiUrl, note_data);
   }
+
+  // Update note deleted status to true
+  updateNoteDeleteStatus(note_id: string) {
+    return this.http.patch<Inote>(this.apiUrl + '/deleted-status/' + note_id, {
+      deleted: 'true',
+    });
+  }
 }

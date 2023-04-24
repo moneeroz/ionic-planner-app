@@ -31,7 +31,7 @@ export class NotesPage implements OnInit {
     // Remove note data from array
     this.notes.splice(index, 1);
 
-    alert('Note deleted successfully!');
+    alert('Note moved to trash successfully!');
   }
 
   ngOnInit() {}
