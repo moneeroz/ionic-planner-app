@@ -14,16 +14,10 @@
       <ion-list>
         <ion-item *ngFor="let todo of deletedTodos">
           <ion-label class="ion-text-wrap">{{ todo.name }}</ion-label>
-          <ion-button
-            fill="clear"
-            color="tertiary"
-            (click)="onTodoRecover(todo.id)"
+          <ion-button fill="clear" (click)="onTodoRecover(todo.id)"
             ><ion-icon name="arrow-undo-outline"></ion-icon
           ></ion-button>
-          <ion-button
-            fill="clear"
-            color="tertiary"
-            (click)="onTodoDelete(todo.id)"
+          <ion-button fill="clear" (click)="onTodoDelete(todo.id)"
             ><ion-icon name="trash-outline"></ion-icon
           ></ion-button>
         </ion-item>
@@ -40,16 +34,10 @@
       <ion-list>
         <ion-item *ngFor="let goal of deletedGoals">
           <ion-label class="ion-text-wrap">{{ goal.name }}</ion-label>
-          <ion-button
-            fill="clear"
-            color="tertiary"
-            (click)="onGoalRecover(goal.id)"
+          <ion-button fill="clear" (click)="onGoalRecover(goal.id)"
             ><ion-icon name="arrow-undo-outline"></ion-icon
           ></ion-button>
-          <ion-button
-            fill="clear"
-            color="tertiary"
-            (click)="onGoalDelete(goal.id)"
+          <ion-button fill="clear" (click)="onGoalDelete(goal.id)"
             ><ion-icon name="trash-outline"></ion-icon
           ></ion-button>
         </ion-item>
@@ -66,16 +54,10 @@
       <ion-list>
         <ion-item *ngFor="let note of deletedNotes">
           <ion-label class="ion-text-wrap">{{ note.name }}</ion-label>
-          <ion-button
-            fill="clear"
-            color="tertiary"
-            (click)="onNoteRecover(note.id)"
+          <ion-button fill="clear" (click)="onNoteRecover(note.id)"
             ><ion-icon name="arrow-undo-outline"></ion-icon
           ></ion-button>
-          <ion-button
-            fill="clear"
-            color="tertiary"
-            (click)="onNoteDelete(note.id)"
+          <ion-button fill="clear" (click)="onNoteDelete(note.id)"
             ><ion-icon name="trash-outline"></ion-icon
           ></ion-button>
         </ion-item>
