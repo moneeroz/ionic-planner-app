@@ -15,6 +15,8 @@ export class AppComponent {
     { title: 'Goals', url: '/goals', icon: 'stats-chart' },
     { title: 'Notes', url: '/notes', icon: 'journal' },
     { title: 'Achievements', url: '/achievements', icon: 'trending-up' },
+    { title: 'Image Diary', url: '/image-diary', icon: 'images' },
+    { title: 'Video Diary', url: '/video-diary', icon: 'videocam' },
     { title: 'Trash', url: '/trash', icon: 'trash' },
   ];
 
@@ -22,6 +24,8 @@ export class AppComponent {
     { title: 'Add Todo', url: '/add-todo', icon: 'add' },
     { title: 'Add Goal', url: '/add-goal', icon: 'ribbon' },
     { title: 'Add Note', url: '/add-note', icon: 'create' },
+    { title: 'Add Image', url: '/add-image', icon: 'image' },
+    { title: 'Add Video', url: '/add-video', icon: 'tv' },
   ];
 
   constructor() {}

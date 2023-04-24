@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>New Motivational Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="imageForm">
+    <ion-list>
+      <ion-item>
+        <ion-textarea
+          formControlName="link"
+          label="Image URL:"
+          labelPlacement="floating"
+          placeholder="Enter image link"
+          type="text"
+        ></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button
+      (click)="onSubmit()"
+      id="submit-button"
+      color="dark"
+      expand="block"
+      fill="clear"
+      [disabled]="imageForm.invalid"
+      >Add Image</ion-button
+    >
+
+    <ion-toast
+      trigger="submit-button"
+      message="Image added succussfully!"
+      [duration]="2500"
+    ></ion-toast>
+  </form>
+</ion-content>

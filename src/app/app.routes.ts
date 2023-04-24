@@ -47,4 +47,20 @@ export const routes: Routes = [
     path: 'trash',
     loadComponent: () => import('./pages/trash/trash.page').then( m => m.TrashPage)
   },
+  {
+    path: 'image-diary',
+    loadComponent: () => import('./pages/image-diary/image-diary.page').then( m => m.ImageDiaryPage)
+  },
+  {
+    path: 'video-diary',
+    loadComponent: () => import('./pages/video-diary/video-diary.page').then( m => m.VideoDiaryPage)
+  },
+  {
+    path: 'add-image',
+    loadComponent: () => import('./pages/add-image/add-image.page').then( m => m.AddImagePage)
+  },
+  {
+    path: 'add-video',
+    loadComponent: () => import('./pages/add-video/add-video.page').then( m => m.AddVideoPage)
+  },
 ];

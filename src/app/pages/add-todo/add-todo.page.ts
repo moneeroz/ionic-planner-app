@@ -67,6 +67,8 @@ export class AddTodoPage implements OnInit {
       .createTodo(goal_data)
       .subscribe((result) => console.log(result));
 
+    this.todoForm.reset();
+
     this.router.navigateByUrl('todos');
   }
 }

@@ -66,6 +66,8 @@ export class AddGoalPage implements OnInit {
       .createGoal(goal_data)
       .subscribe((result) => console.log(result));
 
+    this.goalForm.reset();
+
     this.router.navigateByUrl('goals');
   }
 }

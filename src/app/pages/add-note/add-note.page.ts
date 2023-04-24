@@ -56,6 +56,8 @@ export class AddNotePage implements OnInit {
       .createNote(goal_data)
       .subscribe((result) => console.log(result));
 
+    this.noteForm.reset();
+
     this.router.navigateByUrl('notes');
   }
 }
