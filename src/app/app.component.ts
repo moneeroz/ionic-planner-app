@@ -15,6 +15,7 @@ export class AppComponent {
     { title: 'Goals', url: '/goals', icon: 'stats-chart' },
     { title: 'Notes', url: '/notes', icon: 'journal' },
     { title: 'Achievements', url: '/achievements', icon: 'trending-up' },
+    { title: 'Trash', url: '/trash', icon: 'trash' },
   ];
 
   public appAddPages = [

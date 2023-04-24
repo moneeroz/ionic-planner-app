@@ -43,4 +43,8 @@ export const routes: Routes = [
         (m) => m.AchievementsPage,
       ),
   },
+  {
+    path: 'trash',
+    loadComponent: () => import('./pages/trash/trash.page').then( m => m.TrashPage)
+  },
 ];
