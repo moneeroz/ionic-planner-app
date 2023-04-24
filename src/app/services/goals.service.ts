@@ -27,4 +27,8 @@ export class GoalsService {
       status: 'completed',
     });
   }
+
+  deleteGoal(goal_id: string) {
+    return this.http.delete<Igoal>(this.apiUrl + '/' + goal_id);
+  }
 }

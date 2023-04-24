@@ -27,4 +27,8 @@ export class TodosService {
       status: 'completed',
     });
   }
+
+  deleteTodo(todo_id: string) {
+    return this.http.delete<Itodo>(this.apiUrl + '/' + todo_id);
+  }
 }
