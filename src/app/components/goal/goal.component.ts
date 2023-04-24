@@ -15,7 +15,7 @@ import { GoalsService } from 'src/app/services/goals.service';
 export class GoalComponent implements OnInit {
   @Input() goal!: Igoal;
 
-  // custom event emitter
+  // custom event emitters
   @Output() checkedEvent = new EventEmitter();
 
   constructor(private goalsService: GoalsService) {}

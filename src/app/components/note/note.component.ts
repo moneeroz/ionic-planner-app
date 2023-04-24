@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Inote } from 'src/app/interfaces/inote';
 
@@ -12,7 +12,17 @@ import { Inote } from 'src/app/interfaces/inote';
 export class NoteComponent implements OnInit {
   @Input() note!: Inote;
 
+  // custom event emitter
+  @Output() deleteEvent = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {}
+
+  onNoteDelete(note_id: string) {
+    if (confirm(`Are you sure you want to delete ${this.note.name} Note?`)) {
+      // Triggering our custom event
+      this.deleteEvent.emit(this.note.id);
+    }
+  }
 }

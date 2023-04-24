@@ -21,7 +21,7 @@
           <ion-button fill="clear"
             ><ion-icon name="pencil-outline"></ion-icon
           ></ion-button>
-          <ion-button fill="clear"
+          <ion-button fill="clear" (click)="onTodoDelete(todo.id)"
             ><ion-icon name="trash-outline"></ion-icon
           ></ion-button>
         </ion-item>
@@ -45,7 +45,7 @@
           <ion-button fill="clear"
             ><ion-icon name="pencil-outline"></ion-icon
           ></ion-button>
-          <ion-button fill="clear"
+          <ion-button fill="clear" (click)="onGoalDelete(goal.id)"
             ><ion-icon name="trash-outline"></ion-icon
           ></ion-button>
         </ion-item>

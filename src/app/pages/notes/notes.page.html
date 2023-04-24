@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <div *ngFor="let note of notes">
-    <app-note [note]="note"></app-note>
+    <app-note [note]="note" (deleteEvent)="onNoteDelete($event)"></app-note>
   </div>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">

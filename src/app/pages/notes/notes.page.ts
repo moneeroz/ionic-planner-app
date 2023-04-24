@@ -21,5 +21,18 @@ export class NotesPage implements OnInit {
     this.notesService.getNotes().subscribe((notes) => (this.notes = notes));
   }
 
+  onNoteDelete(note_id: string) {
+    // remove note from UI
+    const index = this.notes.findIndex((note) => {
+      // Get note index from the array
+      return note.id === note_id;
+    });
+
+    // Remove note data from array
+    this.notes.splice(index, 1);
+
+    alert('Note deleted successfully!');
+  }
+
   ngOnInit() {}
 }

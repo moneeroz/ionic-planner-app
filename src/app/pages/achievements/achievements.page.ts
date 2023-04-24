@@ -27,5 +27,31 @@ export class AchievementsPage implements OnInit {
       .subscribe((completedGoals) => (this.achievedGoals = completedGoals));
   }
 
+  onTodoDelete(todo_id: string) {
+    // remove todo from UI
+    const index = this.achievedTodos.findIndex((todo) => {
+      // Get todo index from the array
+      return todo.id === todo_id;
+    });
+
+    // Remove todo data from array
+    this.achievedTodos.splice(index, 1);
+
+    alert('todo deleted successfully!');
+  }
+
+  onGoalDelete(goal_id: string) {
+    // remove goal from UI
+    const index = this.achievedGoals.findIndex((goal) => {
+      // Get goal index from the array
+      return goal.id === goal_id;
+    });
+
+    // Remove goal data from array
+    this.achievedGoals.splice(index, 1);
+
+    alert('goal deleted successfully!');
+  }
+
   ngOnInit() {}
 }
