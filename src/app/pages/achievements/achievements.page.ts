@@ -27,6 +27,7 @@ export class AchievementsPage implements OnInit {
       .subscribe((completedGoals) => (this.achievedGoals = completedGoals));
   }
 
+  // move item to trash methods
   onTodoDelete(todo_id: string) {
     // remove todo from UI
     const index = this.achievedTodos.findIndex((todo) => {
@@ -34,10 +35,20 @@ export class AchievementsPage implements OnInit {
       return todo.id === todo_id;
     });
 
-    // Remove todo data from array
-    this.achievedTodos.splice(index, 1);
+    if (
+      confirm(
+        `Are you sure you want to delete ${this.achievedTodos[index].name} Todo?`,
+      )
+    ) {
+      this.achievementsService
+        .updateTodoDeleteStatus(todo_id)
+        .subscribe((result) => console.log(result));
 
-    alert('todo deleted successfully!');
+      // Remove note data from array
+      this.achievedTodos.splice(index, 1);
+
+      alert('Todo moved to trash successfully!');
+    }
   }
 
   onGoalDelete(goal_id: string) {
@@ -47,10 +58,20 @@ export class AchievementsPage implements OnInit {
       return goal.id === goal_id;
     });
 
-    // Remove goal data from array
-    this.achievedGoals.splice(index, 1);
+    if (
+      confirm(
+        `Are you sure you want to delete ${this.achievedGoals[index].name} Goal?`,
+      )
+    ) {
+      this.achievementsService
+        .updateGoalDeleteStatus(goal_id)
+        .subscribe((result) => console.log(result));
 
-    alert('goal deleted successfully!');
+      // Remove note data from array
+      this.achievedGoals.splice(index, 1);
+
+      alert('Goal moved to trash successfully!');
+    }
   }
 
   ngOnInit() {}

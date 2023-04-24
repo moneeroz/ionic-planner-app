@@ -100,7 +100,7 @@ export class TrashPage implements OnInit {
 
     if (
       confirm(
-        `Are you sure you want to recover ${this.deletedNotes[index].name} note?`,
+        `Are you sure you want to recover ${this.deletedNotes[index].name} Note?`,
       )
     ) {
       this.trashService
