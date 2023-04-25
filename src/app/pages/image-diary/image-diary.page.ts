@@ -1,5 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Idiary } from 'src/app/interfaces/idiary';
 import { DiariesService } from 'src/app/services/diaries.service';
@@ -9,7 +10,7 @@ import { DiariesService } from 'src/app/services/diaries.service';
   templateUrl: './image-diary.page.html',
   styleUrls: ['./image-diary.page.scss'],
   standalone: true,
-  imports: [IonicModule, NgFor],
+  imports: [IonicModule, NgFor, RouterModule],
 })
 export class ImageDiaryPage implements OnInit {
   images: Idiary[] = [];

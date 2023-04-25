@@ -1,5 +1,5 @@
 export interface Idiary {
   id: string;
-  link: string;
+  link: string | any;
   type: string;
 }

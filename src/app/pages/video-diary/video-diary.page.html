@@ -4,4 +4,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> </ion-content>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>youtube videos</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card *ngFor="let video of videos">
+      <iframe
+        height="315"
+        [src]="video.link"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </ion-card>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>uploaded videos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card *ngFor="let video of videosSrc" color="dark">
+      <video [src]="video.src" controls></video>
+
+      <ion-card-content> {{video.title}} </ion-card-content>
+    </ion-card>
+  </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerDirection="forward" [routerLink]="['/add-video']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

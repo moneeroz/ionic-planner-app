@@ -8,4 +8,10 @@
   <ion-card *ngFor="let image of images">
     <img [src]="image.link" />
   </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerDirection="forward" [routerLink]="['/add-image']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

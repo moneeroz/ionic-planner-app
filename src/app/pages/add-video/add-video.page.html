@@ -1,13 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>add-video</ion-title>
+    <ion-title>New Motivational Video</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-video</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="videoForm">
+    <ion-list>
+      <ion-item>
+        <ion-textarea
+          formControlName="link"
+          label="Video URL:"
+          labelPlacement="floating"
+          placeholder="Please add a YouTube video link"
+          type="text"
+        ></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button
+      (click)="onSubmit()"
+      id="submit-button"
+      color="dark"
+      expand="block"
+      fill="clear"
+      [disabled]="videoForm.invalid"
+      >Add Video</ion-button
+    >
+
+    <ion-toast
+      trigger="submit-button"
+      message="Video added succussfully!"
+      [duration]="2500"
+    ></ion-toast>
+  </form>
 </ion-content>
