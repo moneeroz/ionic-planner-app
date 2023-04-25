@@ -27,4 +27,11 @@ export class GoalsService {
       status: 'completed',
     });
   }
+
+  editGoal(goal_id: string, goal_data: any) {
+    return this.http.put<Igoal>(
+      this.apiUrl + '/update-goal/' + goal_id,
+      goal_data,
+    );
+  }
 }

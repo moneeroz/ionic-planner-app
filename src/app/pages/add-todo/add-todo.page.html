@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>New Todo</ion-title>
+    <ion-title *ngIf="!editMode">New Todo</ion-title>
+    <ion-title *ngIf="editMode">Edit Todo</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -67,6 +68,7 @@
     </ion-list>
 
     <ion-button
+      *ngIf="!editMode"
       (click)="onSubmit()"
       id="submit-button"
       color="dark"
@@ -77,8 +79,27 @@
     >
 
     <ion-toast
+      *ngIf="!editMode"
       trigger="submit-button"
       message="Todo added succussfully!"
+      [duration]="2500"
+    ></ion-toast>
+
+    <ion-button
+      *ngIf="editMode"
+      (click)="onSubmitEdit()"
+      id="edit-button"
+      color="dark"
+      expand="block"
+      fill="clear"
+      [disabled]="todoForm.invalid"
+      >Edit Todo</ion-button
+    >
+
+    <ion-toast
+      *ngIf="editMode"
+      trigger="edit-button"
+      message="Todo edited succussfully!"
       [duration]="2500"
     ></ion-toast>
   </form>

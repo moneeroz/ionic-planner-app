@@ -8,6 +8,8 @@
     {{ note.details }}
   </ion-card-content>
 
-  <ion-button fill="clear">Edit</ion-button>
+  <ion-button fill="clear" [routerLink]="['/update-note', note.id]"
+    >Edit</ion-button
+  >
   <ion-button fill="clear" (click)="onNoteDelete(note.id)">Delete</ion-button>
 </ion-card>

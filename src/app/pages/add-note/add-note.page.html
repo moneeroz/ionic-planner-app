@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>New Note</ion-title>
+    <ion-title *ngIf="!editMode">New Note</ion-title>
+    <ion-title *ngIf="editMode">Edit Note</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -42,6 +43,7 @@
     </ion-list>
 
     <ion-button
+      *ngIf="!editMode"
       (click)="onSubmit()"
       id="submit-button"
       color="dark"
@@ -52,8 +54,27 @@
     >
 
     <ion-toast
+      *ngIf="!editMode"
       trigger="submit-button"
       message="Note added succussfully!"
+      [duration]="2500"
+    ></ion-toast>
+
+    <ion-button
+      *ngIf="editMode"
+      (click)="onSubmitEdit()"
+      id="edit-button"
+      color="dark"
+      expand="block"
+      fill="clear"
+      [disabled]="noteForm.invalid"
+      >Edit Note</ion-button
+    >
+
+    <ion-toast
+      *ngIf="editMode"
+      trigger="edit-button"
+      message="Note edited succussfully!"
       [duration]="2500"
     ></ion-toast>
   </form>

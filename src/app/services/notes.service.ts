@@ -28,4 +28,11 @@ export class NotesService {
       deleted: 'true',
     });
   }
+
+  editNote(note_id: string, note_data: any) {
+    return this.http.put<Inote>(
+      this.apiUrl + '/update-note/' + note_id,
+      note_data,
+    );
+  }
 }

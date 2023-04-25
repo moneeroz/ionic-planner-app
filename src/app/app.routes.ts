@@ -12,12 +12,22 @@ export const routes: Routes = [
       import('./pages/add-todo/add-todo.page').then((m) => m.AddTodoPage),
   },
   {
+    path: 'update-todo/:todo_id',
+    loadComponent: () =>
+      import('./pages/add-todo/add-todo.page').then((m) => m.AddTodoPage),
+  },
+  {
     path: 'todos',
     loadComponent: () =>
       import('./pages/todos/todos.page').then((m) => m.TodosPage),
   },
   {
     path: 'add-goal',
+    loadComponent: () =>
+      import('./pages/add-goal/add-goal.page').then((m) => m.AddGoalPage),
+  },
+  {
+    path: 'update-goal/:goal_id',
     loadComponent: () =>
       import('./pages/add-goal/add-goal.page').then((m) => m.AddGoalPage),
   },
@@ -37,6 +47,11 @@ export const routes: Routes = [
       import('./pages/add-note/add-note.page').then((m) => m.AddNotePage),
   },
   {
+    path: 'update-note/:note_id',
+    loadComponent: () =>
+      import('./pages/add-note/add-note.page').then((m) => m.AddNotePage),
+  },
+  {
     path: 'achievements',
     loadComponent: () =>
       import('./pages/achievements/achievements.page').then(
@@ -45,22 +60,31 @@ export const routes: Routes = [
   },
   {
     path: 'trash',
-    loadComponent: () => import('./pages/trash/trash.page').then( m => m.TrashPage)
+    loadComponent: () =>
+      import('./pages/trash/trash.page').then((m) => m.TrashPage),
   },
   {
     path: 'image-diary',
-    loadComponent: () => import('./pages/image-diary/image-diary.page').then( m => m.ImageDiaryPage)
+    loadComponent: () =>
+      import('./pages/image-diary/image-diary.page').then(
+        (m) => m.ImageDiaryPage,
+      ),
   },
   {
     path: 'video-diary',
-    loadComponent: () => import('./pages/video-diary/video-diary.page').then( m => m.VideoDiaryPage)
+    loadComponent: () =>
+      import('./pages/video-diary/video-diary.page').then(
+        (m) => m.VideoDiaryPage,
+      ),
   },
   {
     path: 'add-image',
-    loadComponent: () => import('./pages/add-image/add-image.page').then( m => m.AddImagePage)
+    loadComponent: () =>
+      import('./pages/add-image/add-image.page').then((m) => m.AddImagePage),
   },
   {
     path: 'add-video',
-    loadComponent: () => import('./pages/add-video/add-video.page').then( m => m.AddVideoPage)
+    loadComponent: () =>
+      import('./pages/add-video/add-video.page').then((m) => m.AddVideoPage),
   },
 ];

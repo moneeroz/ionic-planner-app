@@ -18,7 +18,7 @@
             <p>{{ todo.start_date | date }} - {{ todo.end_date | date }}</p>
             <p>{{ todo.description }}</p>
           </ion-label>
-          <ion-button fill="clear"
+          <ion-button fill="clear" [routerLink]="['/update-todo', todo.id]"
             ><ion-icon name="pencil-outline"></ion-icon
           ></ion-button>
           <ion-button fill="clear" (click)="onTodoDelete(todo.id)"
@@ -42,7 +42,7 @@
             <p>{{ goal.start_date | date }} - {{ goal.end_date | date }}</p>
             <p>{{ goal.description }}</p>
           </ion-label>
-          <ion-button fill="clear"
+          <ion-button fill="clear" [routerLink]="['/update-goal', goal.id]"
             ><ion-icon name="pencil-outline"></ion-icon
           ></ion-button>
           <ion-button fill="clear" (click)="onGoalDelete(goal.id)"

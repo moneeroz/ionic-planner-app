@@ -27,4 +27,11 @@ export class TodosService {
       status: 'completed',
     });
   }
+
+  editTodo(todo_id: string, todo_data: any) {
+    return this.http.put<Itodo>(
+      this.apiUrl + '/update-todo/' + todo_id,
+      todo_data,
+    );
+  }
 }

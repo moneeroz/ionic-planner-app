@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { GoalsService } from 'src/app/services/goals.service';
 
@@ -15,15 +15,18 @@ import { GoalsService } from 'src/app/services/goals.service';
   templateUrl: './add-goal.page.html',
   styleUrls: ['./add-goal.page.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, ReactiveFormsModule, NgFor],
+  imports: [IonicModule, FormsModule, ReactiveFormsModule, NgFor, NgIf],
 })
 export class AddGoalPage implements OnInit {
   goalForm;
+  editMode: boolean = false;
+  editGoalId: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private goalsService: GoalsService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
     const date = new Date();
     date.setHours(date.getHours() - date.getTimezoneOffset() / 60);
@@ -35,6 +38,20 @@ export class AddGoalPage implements OnInit {
       end_date: [new Date(date).toISOString(), Validators.required],
       status: ['', Validators.required],
     });
+
+    // Get goal id from current url
+    const goal_id = this.activatedRoute.snapshot.paramMap.get('goal_id');
+
+    // Check if goal id was specified, if true we are in edit mode else we are on create mode
+    if (goal_id !== null) {
+      this.editMode = true;
+      this.editGoalId = goal_id;
+
+      // Get goal data from database and populate the form inputs with the data
+      goalsService
+        .getGoal(goal_id)
+        .subscribe((result) => this.goalForm.patchValue(result));
+    }
   }
 
   ngOnInit() {}
@@ -69,5 +86,14 @@ export class AddGoalPage implements OnInit {
     this.goalForm.reset();
 
     this.router.navigateByUrl('goals');
+  }
+
+  onSubmitEdit() {
+    const goal_data = this.goalForm.value;
+
+    this.goalsService
+      .editGoal(this.editGoalId, goal_data)
+      .subscribe((result) => console.log(result));
+    this.router.navigateByUrl('achievements');
   }
 }

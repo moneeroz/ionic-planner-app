@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Inote } from 'src/app/interfaces/inote';
 import { NotesService } from 'src/app/services/notes.service';
@@ -8,7 +9,7 @@ import { NotesService } from 'src/app/services/notes.service';
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
   standalone: true,
-  imports: [IonicModule],
+  imports: [IonicModule, RouterModule],
 })
 export class NoteComponent implements OnInit {
   @Input() note!: Inote;

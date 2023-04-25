@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe, NgFor } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AchievementsService } from 'src/app/services/achievements.service';
 import { Itodo } from 'src/app/interfaces/itodo';
 import { Igoal } from 'src/app/interfaces/igoal';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-achievements',
   templateUrl: './achievements.page.html',
   styleUrls: ['./achievements.page.scss'],
   standalone: true,
-  imports: [IonicModule, NgFor, DatePipe],
+  imports: [IonicModule, NgFor, DatePipe, RouterModule, NgIf],
 })
 export class AchievementsPage implements OnInit {
   achievedTodos: Itodo[] = [];
@@ -27,7 +28,7 @@ export class AchievementsPage implements OnInit {
       .subscribe((completedGoals) => (this.achievedGoals = completedGoals));
   }
 
-  // move item to trash methods
+  // move todo to trash methods
   onTodoDelete(todo_id: string) {
     // remove todo from UI
     const index = this.achievedTodos.findIndex((todo) => {
@@ -51,6 +52,7 @@ export class AchievementsPage implements OnInit {
     }
   }
 
+  // move goal to trash methods
   onGoalDelete(goal_id: string) {
     // remove goal from UI
     const index = this.achievedGoals.findIndex((goal) => {
