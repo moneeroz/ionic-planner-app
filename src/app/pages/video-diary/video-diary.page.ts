@@ -40,9 +40,8 @@ export class VideoDiaryPage implements OnInit {
     this.diariesService.getVideos().subscribe((videos) => {
       for (const video of videos) {
         video.link = this.sanitizer.bypassSecurityTrustResourceUrl(video.link);
-
-        this.videos.push(video);
       }
+      this.videos = videos;
     });
   }
 
