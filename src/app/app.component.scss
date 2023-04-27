@@ -117,3 +117,11 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+ion-menu::part(backdrop) {
+  background-color: rgba(99, 112, 255, 0.6);
+}
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+
+  box-shadow: 4px 0px 16px rgba(82, 96, 255, 0.2);
+}
