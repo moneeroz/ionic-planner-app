@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { NoteComponent } from 'src/app/components/note/note.component';
 import { Inote } from 'src/app/interfaces/inote';
 import { NotesService } from 'src/app/services/notes.service';
@@ -15,13 +15,29 @@ import { NotesService } from 'src/app/services/notes.service';
 })
 export class NotesPage implements OnInit {
   notes: Inote[] = [];
-  constructor(private notesService: NotesService) {}
+  deletedNote!: Inote;
+  constructor(
+    private notesService: NotesService,
+    private toastController: ToastController,
+  ) {}
 
   ionViewWillEnter() {
     this.notesService.getNotes().subscribe((notes) => (this.notes = notes));
   }
 
-  onNoteDelete(note_id: string) {
+  async onNoteDelete(note_id: string) {
+    this.notes.forEach((note) => {
+      if (note.id === note_id) {
+        this.deletedNote = note;
+      }
+    });
+
+    const toast = await this.toastController.create({
+      message: `${this.deletedNote.name} moved to trash successfully!`,
+      duration: 2000,
+      position: 'bottom',
+    });
+
     // remove note from UI
     const index = this.notes.findIndex((note) => {
       // Get note index from the array
@@ -31,7 +47,9 @@ export class NotesPage implements OnInit {
     // Remove note data from array
     this.notes.splice(index, 1);
 
-    alert('Note moved to trash successfully!');
+    // alert('Note moved to trash successfully!');
+
+    await toast.present();
   }
 
   ngOnInit() {}

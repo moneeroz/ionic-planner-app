@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { Inote } from 'src/app/interfaces/inote';
 import { NotesService } from 'src/app/services/notes.service';
 
@@ -17,18 +17,44 @@ export class NoteComponent implements OnInit {
   // custom event emitter
   @Output() deleteEvent = new EventEmitter();
 
-  constructor(private notesService: NotesService) {}
+  constructor(
+    private notesService: NotesService,
+    private alertController: AlertController,
+  ) {}
 
   ngOnInit() {}
 
-  onNoteDelete(note_id: string) {
-    if (confirm(`Are you sure you want to delete ${this.note.name} Note?`)) {
-      this.notesService
-        .updateNoteDeleteStatus(note_id)
-        .subscribe((result) => console.log(result));
+  async onNoteDelete(note_id: string) {
+    const deleteAlert = await this.alertController.create({
+      header: 'Delete',
 
-      // Triggering our custom event
-      this.deleteEvent.emit(this.note.id);
-    }
+      message: `Are you sure you want to move ${this.note.name} to Trash!`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // change note deleted status to true on the database
+            this.notesService
+              .updateNoteDeleteStatus(note_id)
+              .subscribe((result) => console.log(result));
+            // Triggering our custom event
+            this.deleteEvent.emit(this.note.id);
+          },
+        },
+      ],
+    });
+    await deleteAlert.present();
+
+    // if (confirm(`Are you sure you want to delete ${this.note.name} Note?`)) {
+    //   this.notesService
+    //     .updateNoteDeleteStatus(note_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Triggering our custom event
+    //   this.deleteEvent.emit(this.note.id);
+    // }
   }
 }
