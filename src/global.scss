@@ -37,3 +37,7 @@ ion-fab-button::part(native) {
 ion-fab-button::part(native):hover::after {
   background-color: var(--ion-color-primary);
 }
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}

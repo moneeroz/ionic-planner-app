@@ -39,7 +39,6 @@ export class AchievementsPage implements OnInit {
   /// /// /// /// /// /// /// /// /// /// /// /// ///
   // move todo to trash methods
   async onTodoDelete(todo_id: string) {
-    // remove todo from UI
     const index = this.achievedTodos.findIndex((todo) => {
       // Get todo index from the array
       return todo.id === todo_id;
@@ -61,6 +60,7 @@ export class AchievementsPage implements OnInit {
               .subscribe((result) => console.log(result));
             this.todoToast(this.achievedTodos[index].id);
 
+            // remove todo from UI
             // Remove todo data from array
             this.achievedTodos.splice(index, 1);
           },
@@ -133,23 +133,22 @@ export class AchievementsPage implements OnInit {
       ],
     });
     await deleteAlert.present();
+
+    //   if (
+    //     confirm(
+    //       `Are you sure you want to delete ${this.achievedGoals[index].name} Goal?`,
+    //     )
+    //   ) {
+    //     this.achievementsService
+    //       .updateGoalDeleteStatus(goal_id)
+    //       .subscribe((result) => console.log(result));
+
+    //     // Remove note data from array
+    //     this.achievedGoals.splice(index, 1);
+
+    //     alert('Goal moved to trash successfully!');
+    //   }
   }
-
-  //   if (
-  //     confirm(
-  //       `Are you sure you want to delete ${this.achievedGoals[index].name} Goal?`,
-  //     )
-  //   ) {
-  //     this.achievementsService
-  //       .updateGoalDeleteStatus(goal_id)
-  //       .subscribe((result) => console.log(result));
-
-  //     // Remove note data from array
-  //     this.achievedGoals.splice(index, 1);
-
-  //     alert('Goal moved to trash successfully!');
-  //   }
-  // }
 
   async goalToast(id: string) {
     this.achievedGoals.forEach((goal) => {
