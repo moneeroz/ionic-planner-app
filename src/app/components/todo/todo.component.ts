@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { Itodo } from 'src/app/interfaces/itodo';
 import { TodosService } from 'src/app/services/todos.service';
 
@@ -18,7 +18,12 @@ export class TodoComponent implements OnInit {
   // custom event emitter
   @Output() checkedEvent = new EventEmitter();
 
-  constructor(private todosService: TodosService) {}
+  constructor(
+    private todosService: TodosService,
+    private alertController: AlertController,
+  ) {}
+
+  ngOnInit() {}
 
   onChecked(event: any) {
     if (event.detail.checked) {
@@ -31,5 +36,15 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  async presentAlert(event: any) {
+    if (event.detail.checked) {
+      const alert = await this.alertController.create({
+        header: this.todo.name,
+        message: 'completed successfully!',
+        buttons: ['OK'],
+      });
+
+      await alert.present();
+    }
+  }
 }

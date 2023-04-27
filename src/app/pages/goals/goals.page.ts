@@ -33,7 +33,7 @@ export class GoalsPage implements OnInit {
     // Remove goal data from array
     this.goals.splice(index, 1);
 
-    alert('goal completed successfully!');
+    // alert('goal completed successfully!');
   }
 
   ngOnInit() {}
