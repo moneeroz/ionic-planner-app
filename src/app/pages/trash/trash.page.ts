@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, ToastController } from '@ionic/angular';
 import { Itodo } from 'src/app/interfaces/itodo';
 import { Igoal } from 'src/app/interfaces/igoal';
 import { Inote } from 'src/app/interfaces/inote';
@@ -18,8 +18,15 @@ export class TrashPage implements OnInit {
   deletedTodos: Itodo[] = [];
   deletedGoals: Igoal[] = [];
   deletedNotes: Inote[] = [];
+  deletedTodo!: Itodo;
+  deletedGoal!: Igoal;
+  deletedNote!: Inote;
 
-  constructor(private trashService: TrashService) {}
+  constructor(
+    private trashService: TrashService,
+    private alertController: AlertController,
+    private toastController: ToastController,
+  ) {}
 
   ionViewWillEnter() {
     // Get all deleted Todos
@@ -40,7 +47,7 @@ export class TrashPage implements OnInit {
 
   ngOnInit() {}
 
-  /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// ///
+  /// /// /// /// /// /// /// /// /// /// /// /// ///
 
   // Recover Todo from trash page
   onTodoRecover(todo_id: string) {
@@ -114,75 +121,200 @@ export class TrashPage implements OnInit {
     }
   }
 
+  /// /// /// /// /// /// /// /// /// /// /// ///
+
   // Delete Todo from DB and UI
-  onTodoDelete(todo_id: string) {
+  async onTodoDelete(todo_id: string) {
     // find todo index
     const index = this.deletedTodos.findIndex((todo) => {
       // Get todo index from the array
       return todo.id === todo_id;
     });
 
-    if (
-      confirm(
-        `Are you sure you want to delete ${this.deletedTodos[index].name} Todo?`,
-      )
-    ) {
-      this.trashService
-        .deleteTodo(todo_id)
-        .subscribe((result) => console.log(result));
+    const deleteAlert = await this.alertController.create({
+      header: 'Delete',
 
-      // Remove todo data from array
-      this.deletedTodos.splice(index, 1);
+      message: `Are you sure you want to delete ${this.deletedTodos[index].name} permenantly?`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // delete todo from database
+            this.trashService
+              .deleteTodo(todo_id)
+              .subscribe((result) => console.log(result));
+            this.todoToast(this.deletedTodos[index].id);
 
-      alert('Todo deleted successfully!');
-    }
+            // remove todo from UI
+            // Remove todo data from array
+            this.deletedTodos.splice(index, 1);
+          },
+        },
+      ],
+    });
+    await deleteAlert.present();
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to delete ${this.deletedTodos[index].name} Todo?`,
+    //   )
+    // ) {
+    //   this.trashService
+    //     .deleteTodo(todo_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Remove todo data from array
+    //   this.deletedTodos.splice(index, 1);
+
+    //   alert('Todo deleted successfully!');
+    // }
+  }
+
+  async todoToast(id: string) {
+    this.deletedTodos.forEach((todo) => {
+      if (todo.id === id) {
+        this.deletedTodo = todo;
+      }
+    });
+    const toast = await this.toastController.create({
+      message: `${this.deletedTodo.name} deleted successfully!`,
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 
   // Delete Goal from DB and UI
-  onGoalDelete(Goal_id: string) {
+  async onGoalDelete(goal_id: string) {
     // find Goal index
     const index = this.deletedGoals.findIndex((Goal) => {
       // Get Goal index from the array
-      return Goal.id === Goal_id;
+      return Goal.id === goal_id;
     });
 
-    if (
-      confirm(
-        `Are you sure you want to delete ${this.deletedGoals[index].name} Goal?`,
-      )
-    ) {
-      this.trashService
-        .deleteGoal(Goal_id)
-        .subscribe((result) => console.log(result));
+    const deleteAlert = await this.alertController.create({
+      header: 'Delete',
 
-      // Remove Goal data from array
-      this.deletedGoals.splice(index, 1);
+      message: `Are you sure you want to delete ${this.deletedGoals[index].name} permenantly?`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // delete goal from database
+            this.trashService
+              .deleteGoal(goal_id)
+              .subscribe((result) => console.log(result));
+            this.goalToast(this.deletedGoals[index].id);
 
-      alert('Goal deleted successfully!');
-    }
+            // remove goal from UI
+            // Remove goal data from array
+            this.deletedGoals.splice(index, 1);
+          },
+        },
+      ],
+    });
+    await deleteAlert.present();
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to delete ${this.deletedGoals[index].name} Goal?`,
+    //   )
+    // ) {
+    //   this.trashService
+    //     .deleteGoal(goal_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Remove Goal data from array
+    //   this.deletedGoals.splice(index, 1);
+
+    //   alert('Goal deleted successfully!');
+    // }
+  }
+
+  async goalToast(id: string) {
+    this.deletedGoals.forEach((goal) => {
+      if (goal.id === id) {
+        this.deletedGoal = goal;
+      }
+    });
+    const toast = await this.toastController.create({
+      message: `${this.deletedGoal.name} deleted successfully!`,
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 
   // Delete Note from DB and UI
-  onNoteDelete(note_id: string) {
+  async onNoteDelete(note_id: string) {
     // find note index
     const index = this.deletedNotes.findIndex((note) => {
       // Get note index from the array
       return note.id === note_id;
     });
 
-    if (
-      confirm(
-        `Are you sure you want to delete ${this.deletedNotes[index].name} Note?`,
-      )
-    ) {
-      this.trashService
-        .deleteNote(note_id)
-        .subscribe((result) => console.log(result));
+    const deleteAlert = await this.alertController.create({
+      header: 'Delete',
 
-      // Remove note data from array
-      this.deletedNotes.splice(index, 1);
+      message: `Are you sure you want to delete ${this.deletedNotes[index].name} permenantly?`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // delete note from database
+            this.trashService
+              .deleteNote(note_id)
+              .subscribe((result) => console.log(result));
+            this.noteToast(this.deletedNotes[index].id);
 
-      alert('Note deleted successfully!');
-    }
+            // remove note from UI
+            // Remove note data from array
+            this.deletedNotes.splice(index, 1);
+          },
+        },
+      ],
+    });
+    await deleteAlert.present();
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to delete ${this.deletedNotes[index].name} Note?`,
+    //   )
+    // ) {
+    //   this.trashService
+    //     .deleteNote(note_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Remove note data from array
+    //   this.deletedNotes.splice(index, 1);
+
+    //   alert('Note deleted successfully!');
+    // }
+  }
+
+  async noteToast(id: string) {
+    this.deletedNotes.forEach((note) => {
+      if (note.id === id) {
+        this.deletedNote = note;
+      }
+    });
+    const toast = await this.toastController.create({
+      message: `${this.deletedNote.name} deleted successfully!`,
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 }
