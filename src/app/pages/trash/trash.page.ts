@@ -50,75 +50,198 @@ export class TrashPage implements OnInit {
   /// /// /// /// /// /// /// /// /// /// /// /// ///
 
   // Recover Todo from trash page
-  onTodoRecover(todo_id: string) {
+  async onTodoRecover(todo_id: string) {
     // find todo index
     const index = this.deletedTodos.findIndex((todo) => {
       // Get todo index from the array
       return todo.id === todo_id;
     });
 
-    if (
-      confirm(
-        `Are you sure you want to recover ${this.deletedTodos[index].name} Todo?`,
-      )
-    ) {
-      this.trashService
-        .updateTodoDeleteStatus(todo_id)
-        .subscribe((result) => console.log(result));
+    const recoverAlert = await this.alertController.create({
+      header: 'Recover',
 
-      // Remove todo data from array
-      this.deletedTodos.splice(index, 1);
+      message: `Are you sure you want to recover ${this.deletedTodos[index].name}?`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // delete todo from database
+            this.trashService
+              .updateTodoDeleteStatus(todo_id)
+              .subscribe((result) => console.log(result));
+            this.recovertodoToast(this.deletedTodos[index].id);
 
-      alert('Todo recovered successfully!');
-    }
+            // remove todo from UI
+            // Remove todo data from array
+            this.deletedTodos.splice(index, 1);
+          },
+        },
+      ],
+    });
+    await recoverAlert.present();
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to recover ${this.deletedTodos[index].name} Todo?`,
+    //   )
+    // ) {
+    //   this.trashService
+    //     .updateTodoDeleteStatus(todo_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Remove todo data from array
+    //   this.deletedTodos.splice(index, 1);
+
+    //   alert('Todo recovered successfully!');
+    // }
+  }
+
+  async recovertodoToast(id: string) {
+    this.deletedTodos.forEach((todo) => {
+      if (todo.id === id) {
+        this.deletedTodo = todo;
+      }
+    });
+    const toast = await this.toastController.create({
+      message: `${this.deletedTodo.name} recovered successfully!`,
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 
   // Recover Goal from trash page
-  onGoalRecover(goal_id: string) {
+  async onGoalRecover(goal_id: string) {
     // find goal index
     const index = this.deletedGoals.findIndex((goal) => {
       // Get goal index from the array
       return goal.id === goal_id;
     });
 
-    if (
-      confirm(
-        `Are you sure you want to recover ${this.deletedGoals[index].name} Goal?`,
-      )
-    ) {
-      this.trashService
-        .updateGoalDeleteStatus(goal_id)
-        .subscribe((result) => console.log(result));
+    const recoverAlert = await this.alertController.create({
+      header: 'Recover',
 
-      // Remove goal data from array
-      this.deletedGoals.splice(index, 1);
+      message: `Are you sure you want to recover ${this.deletedGoals[index].name}?`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // delete goal from database
+            this.trashService
+              .updateGoalDeleteStatus(goal_id)
+              .subscribe((result) => console.log(result));
+            this.recoverGoalToast(this.deletedGoals[index].id);
 
-      alert('Goal recovered successfully!');
-    }
+            // remove goal from UI
+            // Remove goal data from array
+            this.deletedGoals.splice(index, 1);
+          },
+        },
+      ],
+    });
+    await recoverAlert.present();
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to recover ${this.deletedGoals[index].name} Goal?`,
+    //   )
+    // ) {
+    //   this.trashService
+    //     .updateGoalDeleteStatus(goal_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Remove goal data from array
+    //   this.deletedGoals.splice(index, 1);
+
+    //   alert('Goal recovered successfully!');
+    // }
+  }
+
+  async recoverGoalToast(id: string) {
+    this.deletedGoals.forEach((goal) => {
+      if (goal.id === id) {
+        this.deletedGoal = goal;
+      }
+    });
+    const toast = await this.toastController.create({
+      message: `${this.deletedGoal.name} recovered successfully!`,
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 
   // Recover Note from trash page
-  onNoteRecover(note_id: string) {
+  async onNoteRecover(note_id: string) {
     // find note index
     const index = this.deletedNotes.findIndex((note) => {
       // Get note index from the array
       return note.id === note_id;
     });
 
-    if (
-      confirm(
-        `Are you sure you want to recover ${this.deletedNotes[index].name} Note?`,
-      )
-    ) {
-      this.trashService
-        .updateNoteDeleteStatus(note_id)
-        .subscribe((result) => console.log(result));
+    const recoverAlert = await this.alertController.create({
+      header: 'Recover',
 
-      // Remove note data from array
-      this.deletedNotes.splice(index, 1);
+      message: `Are you sure you want to recover ${this.deletedNotes[index].name}?`,
+      buttons: [
+        {
+          text: 'NO',
+        },
+        {
+          text: 'YES',
+          handler: () => {
+            // delete note from database
+            this.trashService
+              .updateNoteDeleteStatus(note_id)
+              .subscribe((result) => console.log(result));
+            this.recoverNoteToast(this.deletedNotes[index].id);
 
-      alert('Note recovered successfully!');
-    }
+            // remove note from UI
+            // Remove note data from array
+            this.deletedNotes.splice(index, 1);
+          },
+        },
+      ],
+    });
+    await recoverAlert.present();
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to recover ${this.deletedNotes[index].name} Note?`,
+    //   )
+    // ) {
+    //   this.trashService
+    //     .updateNoteDeleteStatus(note_id)
+    //     .subscribe((result) => console.log(result));
+
+    //   // Remove note data from array
+    //   this.deletedNotes.splice(index, 1);
+
+    //   alert('Note recovered successfully!');
+    // }
+  }
+
+  async recoverNoteToast(id: string) {
+    this.deletedNotes.forEach((note) => {
+      if (note.id === id) {
+        this.deletedNote = note;
+      }
+    });
+    const toast = await this.toastController.create({
+      message: `${this.deletedNote.name} recovered successfully!`,
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 
   /// /// /// /// /// /// /// /// /// /// /// ///
