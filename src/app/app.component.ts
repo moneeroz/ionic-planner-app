@@ -2,6 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { TrashService } from './services/trash.service';
+import { Inote } from './interfaces/inote';
+import { Igoal } from './interfaces/igoal';
+import { Itodo } from './interfaces/itodo';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,14 +14,29 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class AppComponent {
+  trashCount: number = 0;
+
+  constructor() {}
+
   public appPages = [
-    { title: 'Todos', url: '/todos', icon: 'document-text' },
-    { title: 'Goals', url: '/goals', icon: 'stats-chart' },
-    { title: 'Notes', url: '/notes', icon: 'journal' },
-    { title: 'Achievements', url: '/achievements', icon: 'trending-up' },
+    { title: 'Todos', url: '/todos', icon: 'document-text', color: 'primary' },
+    { title: 'Goals', url: '/goals', icon: 'stats-chart', color: 'secondary' },
+    { title: 'Notes', url: '/notes', icon: 'journal', color: 'tertiary' },
+    {
+      title: 'Achievements',
+      url: '/achievements',
+      icon: 'trending-up',
+      color: 'success',
+    },
     { title: 'Image Diary', url: '/image-diary', icon: 'images' },
     { title: 'Video Diary', url: '/video-diary', icon: 'videocam' },
-    { title: 'Trash', url: '/trash', icon: 'trash' },
+    {
+      title: 'Trash',
+      url: '/trash',
+      icon: 'trash',
+      color: 'danger',
+      count: this.trashCount,
+    },
   ];
 
   public appAddPages = [
@@ -27,6 +46,4 @@ export class AppComponent {
     { title: 'Add Image', url: '/add-image', icon: 'image' },
     { title: 'Add Video', url: '/add-video', icon: 'tv' },
   ];
-
-  constructor() {}
 }
