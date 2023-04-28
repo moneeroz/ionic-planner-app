@@ -14,7 +14,7 @@ import { Itodo } from './interfaces/itodo';
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class AppComponent {
-  trashCount: number = 0;
+  trashCount: number = 3;
 
   constructor() {}
 
